@@ -30,144 +30,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "SalesOrderID",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "SalesOrderID",
-									"type": "Int32",
-									"physicalType": "INT_32"
-								}
-							},
-							{
-								"source": {
-									"name": "SalesOrderDetailID",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "SalesOrderDetailID",
-									"type": "Int32",
-									"physicalType": "INT_32"
-								}
-							},
-							{
-								"source": {
-									"name": "OrderQty",
-									"type": "Int16",
-									"physicalType": "smallint"
-								},
-								"sink": {
-									"name": "OrderQty",
-									"type": "Int16",
-									"physicalType": "INT_32"
-								}
-							},
-							{
-								"source": {
-									"name": "ProductID",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "ProductID",
-									"type": "Int32",
-									"physicalType": "INT_32"
-								}
-							},
-							{
-								"source": {
-									"name": "UnitPrice",
-									"type": "Decimal",
-									"physicalType": "money",
-									"scale": 4,
-									"precision": 19
-								},
-								"sink": {
-									"name": "UnitPrice",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "UnitPriceDiscount",
-									"type": "Decimal",
-									"physicalType": "money",
-									"scale": 4,
-									"precision": 19
-								},
-								"sink": {
-									"name": "UnitPriceDiscount",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "LineTotal",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 6,
-									"precision": 38
-								},
-								"sink": {
-									"name": "LineTotal",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "rowguid",
-									"type": "Guid",
-									"physicalType": "uniqueidentifier"
-								},
-								"sink": {
-									"name": "rowguid",
-									"type": "Guid",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
-									"name": "ModifiedDate",
-									"type": "DateTime",
-									"physicalType": "datetime"
-								},
-								"sink": {
-									"name": "ModifiedDate",
-									"type": "DateTime",
-									"physicalType": "INT_96"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_SalesOrderDetail",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_SalesOrderDetail",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-SalesOrderHeader",
@@ -203,28 +67,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_SalesOrderHeader",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_SalesOrderHeader",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-Customer",
@@ -260,28 +104,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_Customer",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_Customer",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-Address",
@@ -317,28 +141,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_Address",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_Address",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-Product",
@@ -374,28 +178,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_Product",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_Product",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-ProductCategory",
@@ -431,28 +215,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_ProductCategory",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_ProductCategory",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-ProductDescription",
@@ -488,28 +252,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_ProductDescription",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_ProductDescription",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-ProductModel",
@@ -545,28 +289,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_ProductModel",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_ProductModel",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-ProductModelProductDescription",
@@ -602,28 +326,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_ProductModelProductDescription",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_ProductModelProductDescription",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			},
 			{
 				"name": "Copy-CustomerAddress",
@@ -659,28 +363,8 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_CustomerAddress",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sink_CustomerAddress",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			}
 		],
 		"annotations": [],

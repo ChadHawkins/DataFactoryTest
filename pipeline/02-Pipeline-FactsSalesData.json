@@ -54,13 +54,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "LS_AzureDataLake_SalesData",
-							"type": "LinkedServiceReference"
-						},
-						"path": "data"
-					},
 					"enableLogging": true,
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
@@ -86,10 +79,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[uspLogError]"
-				},
-				"linkedServiceName": {
-					"referenceName": "SandboxServer_DataFactory",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
