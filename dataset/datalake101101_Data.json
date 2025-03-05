@@ -1,0 +1,52 @@
+{
+	"name": "datalake101101_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake101101",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SalesOrderID",
+				"type": "INT32"
+			},
+			{
+				"name": "OrderQty",
+				"type": "INT32"
+			},
+			{
+				"name": "ProductID",
+				"type": "INT32"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "OrderDate",
+				"type": "INT96"
+			},
+			{
+				"name": "CustomerID",
+				"type": "INT32"
+			},
+			{
+				"name": "TotalAmount",
+				"type": "DECIMAL",
+				"precision": 30,
+				"scale": 4
+			}
+		]
+	}
+}
