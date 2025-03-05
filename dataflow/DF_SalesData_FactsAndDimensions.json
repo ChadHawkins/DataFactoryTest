@@ -1,0 +1,98 @@
+{
+	"name": "DF_SalesData_FactsAndDimensions",
+	"properties": {
+		"description": "This data flow extracts data from source tables, applies transformations to structure the data into fact and dimension tables, and loads the data into the Data Lake.",
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "SourceSalesOrderDetail"
+				},
+				{
+					"name": "SourceSalesOrderHeader"
+				}
+			],
+			"sinks": [
+				{
+					"name": "SinkSalesFacts"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SalesOrderDetailJoinsSalesOrderHeader"
+				},
+				{
+					"name": "DerivedTotalAmount"
+				},
+				{
+					"name": "SelectFactColmuns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SalesOrderID as integer,",
+				"          SalesOrderDetailID as integer,",
+				"          OrderQty as integer,",
+				"          ProductID as integer,",
+				"          UnitPrice as decimal(19,4),",
+				"          UnitPriceDiscount as decimal(19,4),",
+				"          LineTotal as decimal(38,6),",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false) ~> SourceSalesOrderDetail",
+				"source(output(",
+				"          SalesOrderID as integer,",
+				"          RevisionNumber as integer,",
+				"          OrderDate as timestamp,",
+				"          DueDate as timestamp,",
+				"          ShipDate as timestamp,",
+				"          Status as integer,",
+				"          OnlineOrderFlag as boolean,",
+				"          SalesOrderNumber as string,",
+				"          PurchaseOrderNumber as string,",
+				"          AccountNumber as string,",
+				"          CustomerID as integer,",
+				"          ShipToAddressID as integer,",
+				"          BillToAddressID as integer,",
+				"          ShipMethod as string,",
+				"          CreditCardApprovalCode as string,",
+				"          SubTotal as decimal(19,4),",
+				"          TaxAmt as decimal(19,4),",
+				"          Freight as decimal(19,4),",
+				"          TotalDue as decimal(19,4),",
+				"          Comment as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false) ~> SourceSalesOrderHeader",
+				"SourceSalesOrderDetail, SourceSalesOrderHeader join(SourceSalesOrderDetail@SalesOrderID == SourceSalesOrderHeader@SalesOrderID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> SalesOrderDetailJoinsSalesOrderHeader",
+				"SalesOrderDetailJoinsSalesOrderHeader derive(TotalAmount = OrderQty * UnitPrice) ~> DerivedTotalAmount",
+				"DerivedTotalAmount select(mapColumn(",
+				"          SalesOrderID = SourceSalesOrderDetail@SalesOrderID,",
+				"          OrderQty,",
+				"          ProductID,",
+				"          UnitPrice,",
+				"          OrderDate,",
+				"          CustomerID,",
+				"          TotalAmount",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectFactColmuns",
+				"SelectFactColmuns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     format: 'parquet',",
+				"     preCommands: [],",
+				"     postCommands: []) ~> SinkSalesFacts"
+			]
+		}
+	}
+}
