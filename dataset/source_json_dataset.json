@@ -1,0 +1,22 @@
+{
+	"name": "source_json_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLake_SalesData",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "factorydata"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

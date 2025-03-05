@@ -6,14 +6,26 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"dataset": {
+						"referenceName": "Source_SalesOrderDetail",
+						"type": "DatasetReference"
+					},
 					"name": "SourceSalesOrderDetail"
 				},
 				{
+					"dataset": {
+						"referenceName": "Source_SalesOrderHeader",
+						"type": "DatasetReference"
+					},
 					"name": "SourceSalesOrderHeader"
 				}
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "FactsData",
+						"type": "DatasetReference"
+					},
 					"name": "SinkSalesFacts"
 				}
 			],
@@ -41,7 +53,9 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false) ~> SourceSalesOrderDetail",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SourceSalesOrderDetail",
 				"source(output(",
 				"          SalesOrderID as integer,",
 				"          RevisionNumber as integer,",
@@ -67,7 +81,9 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false) ~> SourceSalesOrderHeader",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SourceSalesOrderHeader",
 				"SourceSalesOrderDetail, SourceSalesOrderHeader join(SourceSalesOrderDetail@SalesOrderID == SourceSalesOrderHeader@SalesOrderID,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
@@ -87,11 +103,21 @@
 				"     skipDuplicateMapOutputs: true) ~> SelectFactColmuns",
 				"SelectFactColmuns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
+				"     input(",
+				"          SalesOrderID as integer,",
+				"          OrderQty as integer,",
+				"          ProductID as integer,",
+				"          UnitPrice as decimal(19,4),",
+				"          OrderDate as timestamp,",
+				"          CustomerID as integer,",
+				"          TotalAmount as decimal(30,4)",
+				"     ),",
 				"     format: 'parquet',",
+				"     umask: 0022,",
 				"     preCommands: [],",
-				"     postCommands: []) ~> SinkSalesFacts"
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkSalesFacts"
 			]
 		}
 	}

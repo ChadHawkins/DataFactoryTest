@@ -1,0 +1,24 @@
+{
+	"name": "Sink_ProductModel",
+	"properties": {
+		"description": "The location in Data Lake where the transformed ProductModel data will be stored",
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLake_SalesData",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Sink Datesets"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "factorydata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

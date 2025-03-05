@@ -1,0 +1,41 @@
+{
+	"name": "Source_ProductDescription",
+	"properties": {
+		"description": "Points to the SalesLT.ProductDescription table. This dimension table describes the product descriptions.Points to the SalesLT.ProductDescription table. This dimension table describes the product descriptions.",
+		"linkedServiceName": {
+			"referenceName": "SandboxServer_DataFactory",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductDescriptionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "ProductDescription"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

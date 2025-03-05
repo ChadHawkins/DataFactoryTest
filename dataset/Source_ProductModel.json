@@ -1,0 +1,45 @@
+{
+	"name": "Source_ProductModel",
+	"properties": {
+		"description": "Points to the SalesLT.ProductModel table. This dimension table contains product model information.",
+		"linkedServiceName": {
+			"referenceName": "SandboxServer_DataFactory",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductModelID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CatalogDescription",
+				"type": "xml"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "ProductModel"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

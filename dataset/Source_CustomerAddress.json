@@ -1,0 +1,46 @@
+{
+	"name": "Source_CustomerAddress",
+	"properties": {
+		"description": "Points to the SalesLT.CustomerAddress table. This is a dimension table linking customers to their addresses.",
+		"linkedServiceName": {
+			"referenceName": "SandboxServer_DataFactory",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AddressID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AddressType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "CustomerAddress"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

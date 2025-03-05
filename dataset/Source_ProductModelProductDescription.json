@@ -1,0 +1,46 @@
+{
+	"name": "Source_ProductModelProductDescription",
+	"properties": {
+		"description": "Points to the SalesLT.ProductModelProductDescription table. This is a junction table linking product models to product descriptions.",
+		"linkedServiceName": {
+			"referenceName": "SandboxServer_DataFactory",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductModelID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductDescriptionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Culture",
+				"type": "nchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "ProductModelProductDescription"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

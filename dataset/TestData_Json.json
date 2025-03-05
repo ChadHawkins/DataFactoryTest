@@ -1,0 +1,19 @@
+{
+	"name": "TestData_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLake_SalesData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "json"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

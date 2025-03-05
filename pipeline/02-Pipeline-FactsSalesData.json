@@ -1,0 +1,100 @@
+{
+	"name": "02-Pipeline-FactsSalesData",
+	"properties": {
+		"activities": [
+			{
+				"name": "FactsDataFlow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "DeleteOldFacts",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Stored procedure1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_SalesData_FactsAndDimensions",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "DeleteOldFacts",
+				"type": "Delete",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "LS_AzureDataLake_SalesData",
+							"type": "LinkedServiceReference"
+						},
+						"path": "data"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"maxConcurrentConnections": 1,
+						"recursive": true,
+						"modifiedDatetimeStart": "2025-03-05T00:00:00Z",
+						"wildcardFileName": "*.Parquet",
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[uspLogError]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SandboxServer_DataFactory",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-03-05T12:22:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

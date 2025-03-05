@@ -1,0 +1,85 @@
+{
+	"name": "Source_Customer",
+	"properties": {
+		"description": "Points to the SalesLT.Customer table. This is a dimension table with customer information like name, contact, and address.",
+		"linkedServiceName": {
+			"referenceName": "SandboxServer_DataFactory",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Source Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NameStyle",
+				"type": "bit"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MiddleName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Suffix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesPerson",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PasswordHash",
+				"type": "varchar"
+			},
+			{
+				"name": "PasswordSalt",
+				"type": "varchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

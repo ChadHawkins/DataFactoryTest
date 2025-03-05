@@ -1,0 +1,54 @@
+{
+	"name": "TestData_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLake_SalesData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "part-00000-a25730d2-92e5-4b70-926a-53ff2e0cd8f6-c000.snappy.parquet",
+				"fileSystem": "data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SalesOrderID",
+				"type": "INT32"
+			},
+			{
+				"name": "OrderQty",
+				"type": "INT32"
+			},
+			{
+				"name": "ProductID",
+				"type": "INT32"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "OrderDate",
+				"type": "INT96"
+			},
+			{
+				"name": "CustomerID",
+				"type": "INT32"
+			},
+			{
+				"name": "TotalAmount",
+				"type": "DECIMAL",
+				"precision": 30,
+				"scale": 4
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
